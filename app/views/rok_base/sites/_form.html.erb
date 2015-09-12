@@ -1,0 +1,17 @@
+<%= simple_form_for @site, html: { class: 'pure-form-aligned' } do |f| %>
+  <%= f.input :name, input_html: { class: 'pure-input-1' } %>
+  <%= f.input :host, input_html: { class: 'pure-input-1' } %>
+  <% if RokBlog %>
+    <%= f.input :blog_base, input_html: { class: 'pure-input-1' } %>
+  <% end %>
+  <div class="pure-g">
+    <div class="pure-u-md-1-2 pure-u-sm-1">
+      <%= f.input :scss, label: 'SCSS', input_html: { class: 'pure-input-1', rows: 10 } %>
+    </div>
+    <div class="pure-u-md-1-2 pure-u-sm-1">
+      <%= f.input :javascript, input_html: { class: 'pure-input-1', rows: 10 } %>
+    </div>
+  </div>
+  <%= render 'form_actions' %>
+<% end %>
+

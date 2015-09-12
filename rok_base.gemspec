@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.license     = "Beerware"
 
   s.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.rdoc"]
+  s.require_path ='lib'
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.2.3"
@@ -22,6 +23,9 @@ Gem::Specification.new do |s|
 
   # Abilities
   s.add_dependency "cancancan"
+
+  # Decorators
+  s.add_dependency "draper"
 
   s.add_dependency 'simple_form'
 
