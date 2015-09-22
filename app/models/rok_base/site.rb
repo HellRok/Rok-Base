@@ -2,6 +2,7 @@ module RokBase
   class Site < ActiveRecord::Base
     include SiteExtension
     before_save :compile_scss
+    after_save :update_post_paths if RokBlog
 
     validates_presence_of :host, :name
     validates_uniqueness_of :host, :name
@@ -37,6 +38,10 @@ module RokBase
       def compile_scss
         # TODO: Proper error handling instead of exploding
         self.compiled_css = self.scss.present? ? Sass.compile(self.scss, style: :compressed) : nil
+      end
+
+      def update_post_paths
+        posts.each(&:save)
       end
   end
 end
