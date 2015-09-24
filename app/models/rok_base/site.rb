@@ -24,11 +24,11 @@ module RokBase
       to_return = nil
 
       if RokBlog && url.starts_with?(blog_base)
-        to_return = posts.find_by(slug: url.sub(blog_base, ''), published: true)
+        to_return = posts.find_by(path: url, published: true)
       end
 
       if RokCms
-        to_return ||= pages.find_by(slug: url, published: true)
+        to_return ||= pages.find_by(path: url, published: true)
       end
 
       to_return
