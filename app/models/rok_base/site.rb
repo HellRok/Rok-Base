@@ -5,7 +5,7 @@ module RokBase
     after_save :update_post_paths if RokBlog
 
     validates_presence_of :host, :name
-    validates_uniqueness_of :host, :name
+    validates_uniqueness_of :host
     validates_length_of :host, :name, maximum: 255
 
     if RokCms

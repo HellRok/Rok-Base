@@ -14,86 +14,8 @@
 
 <body>
   <div id="wrap">
-    <header id="top-menu" class="pure-menu pure-menu-horizontal pure-menu-fixed">
-      <div id="side-menu-link" class="side-menu-link" onClick="$('#wrap').toggleClass('active');">
-        <span class="fa fa-bars"></span>
-      </div>
-
-      <%= link_to 'Admin Panel', rok_base.root_path, class: 'pure-menu-heading' %>
-
-      <ul class="pure-menu-list">
-        <li class="pure-menu-item">
-          <%= link_to rok_base.root_path, class: 'pure-menu-link' do %>
-            <span class="fa fa-external-link"></span>
-          <% end %>
-        </li>
-      </ul>
-    </header>
-
-    <nav id="side-menu" class="pure-menu">
-      <ul class="pure-menu-list">
-        <li class="pure-menu-item">
-          <%= link_to rok_base.root_path, class: 'pure-menu-link' do %>
-            <span class="fa fa-home"></span> Dashboard
-          <% end %>
-        </li>
-        <li class="pure-menu-item">
-          <%= link_to rok_base.sites_path, class: 'pure-menu-link' do %>
-            <span class="fa fa-sitemap"></span> Sites
-          <% end %>
-        </li>
-
-        <% if @site.present? && @site.persisted? %>
-          <li class="pure-menu-item">
-            <%= link_to rok_base.site_path(@site), class: 'pure-menu-link' do %>
-              <span class="fa fa-desktop"></span> Site
-            <% end %>
-          </li>
-
-          <% if RokCms %>
-            <li class="pure-menu-item">
-              <%= link_to rok_cms.site_themes_path(@site), class: 'pure-menu-link' do %>
-                <span class="fa fa-paint-brush"></span> Themes
-              <% end %>
-            </li>
-            <li class="pure-menu-item">
-              <%= link_to rok_cms.site_layouts_path(@site), class: 'pure-menu-link' do %>
-                <span class="fa fa-pencil"></span> Layouts
-              <% end %>
-            </li>
-            <li class="pure-menu-item">
-              <%= link_to rok_cms.site_pages_path(@site), class: 'pure-menu-link' do %>
-                <span class="fa fa-file-text"></span> Pages
-              <% end %>
-            </li>
-          <% end %>
-
-          <% if RokBlog %>
-            <li class="pure-menu-item">
-              <%= link_to rok_blog.site_posts_path(@site), class: 'pure-menu-link' do %>
-                <span class="fa fa-file"></span> Blog Posts
-              <% end %>
-            </li>
-            <%# TODO: Implement local comments %>
-            <% if false %>
-              <li class="pure-menu-item">
-                <%= link_to rok_blog.site_comments_path(@site), class: 'pure-menu-link' do %>
-                  <span class="fa fa-comments"></span> Comments
-                <% end %>
-              </li>
-            <% end %>
-          <% end %>
-        <% end %>
-
-        <% if @site.present? && @site.persisted? %>
-          <li class="pure-menu-item">
-            <%= link_to rok_base.site_uploads_path(@site), class: 'pure-menu-link' do %>
-              <span class="fa fa-cloud-upload"></span> Uploads
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </nav>
+    <%= render 'shared/rok/nav' %>
+    <%= render 'shared/rok/sidebar' %>
 
     <section id="main">
       <h1 id="main-title"><%= @title || 'Dashboard' %></h1>

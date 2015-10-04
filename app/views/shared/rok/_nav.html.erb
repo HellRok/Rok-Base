@@ -1,0 +1,10 @@
+<header id="top-menu" class="pure-menu pure-menu-horizontal pure-menu-fixed">
+  <%= render 'shared/rok/nav_left' %>
+  <div id="side-menu-link" class="side-menu-link" onClick="$('#wrap').toggleClass('active');">
+    <span class="fa fa-bars"></span>
+  </div>
+
+  <%= link_to 'Admin Panel', rok_base.root_path, class: 'pure-menu-heading' %>
+  <%= render 'shared/rok/nav_right' %>
+</header>
+

@@ -1,5 +1,5 @@
 module RokBase
-  class ApplicationController < ActionController::Base
+  class ApplicationController < RokExtensionController
     layout "admin"
     add_crumb 'Admin', '/admin/'
 
@@ -18,10 +18,6 @@ module RokBase
     end
 
     private
-
-    def current_user
-      @current_user
-    end
 
     def set_site
       @child = instance_variable_get("@#{params[:controller].split('/').last.singularize}")
