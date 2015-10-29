@@ -5,5 +5,7 @@ Gem.loaded_specs['rok_base'].dependencies.each do |d|
   require d.name
 end
 
+require "rok_base/liquid_filters"
+
 module RokBase
 end

@@ -34,6 +34,11 @@ module RokBase
       to_return
     end
 
+    def blog_base
+      # Make sure we always start with a /
+      super[0] != '/' ? "/#{super}" : super
+    end
+
     private
       def compile_scss
         # TODO: Proper error handling instead of exploding

@@ -26,8 +26,6 @@ module RokBase
       process :resize_to_fit => [1024, 1024]
     end
 
-    protected
-
     def image?(new_file)
       new_file.content_type.start_with? 'image'
     end
