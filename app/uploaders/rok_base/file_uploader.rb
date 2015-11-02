@@ -3,7 +3,7 @@
 module RokBase
   class FileUploader < CarrierWave::Uploader::Base
     include CarrierWave::MimeTypes
-    include CarrierWave::RMagick
+    include CarrierWave::MiniMagick
 
     process :set_content_type
 

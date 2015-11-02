@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
 
   # Images
   s.add_dependency 'carrierwave'
-  s.add_dependency 'rmagick'
+  s.add_dependency 'mini_magick'
 
   # Pure-admin dependencies
   s.add_dependency 'font-awesome-rails'
