@@ -5,7 +5,7 @@ module RokBase
     load_and_authorize_resource :site, class: 'RokBase::Site'
     load_and_authorize_resource class: 'RokBase::Upload', through: :site, shallow: true
     decorates_assigned :uploads, :upload, :site
-    before_filter :set_site, :upload_crumbs
+    before_filter :set_site, :upload_crumbs, :stamp
 
     def index
       @uploads = @uploads.page(params[:page])
@@ -42,22 +42,22 @@ module RokBase
 
     private
 
-    def upload_params
-      params.require(:upload).permit(:file, :name)
-    end
+      def upload_params
+        params.require(:upload).permit(:file, :name)
+      end
 
-    def upload_crumbs
-      add_crumb 'Uploads', site_uploads_path(@site)
+      def upload_crumbs
+        add_crumb 'Uploads', site_uploads_path(@site)
 
-      if @upload.present?
-        if @upload.persisted?
-          add_crumb upload.name
-          @title = upload.name
-        else
-          add_crumb 'New'
-          @title = 'Upload'
+        if @upload.present?
+          if @upload.persisted?
+            add_crumb upload.name
+            @title = upload.name
+          else
+            add_crumb 'New'
+            @title = 'Upload'
+          end
         end
       end
-    end
   end
 end

@@ -8,4 +8,5 @@ end
 require "rok_base/liquid_filters"
 
 module RokBase
+  mattr_accessor :user_class
 end

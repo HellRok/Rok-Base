@@ -41,22 +41,31 @@ module RokBase
 
     private
 
-    def site_params
-      params.require(:site).permit(:name, :host, :scss, :javascript, :blog_base)
-    end
+      def site_params
+        params.require(:site).permit(:name, :host, :scss, :javascript, :blog_base)
+      end
 
-    def site_crumbs
-      add_crumb 'Sites', sites_path
+      def site_crumbs
+        add_crumb 'Sites', sites_path
 
-      if @site.present?
-        if @site.persisted?
-          add_crumb @site.name
-          @title = @site.name
-        else
-          add_crumb 'New'
-          @title = 'Site'
+        if @site.present?
+          if @site.persisted?
+            add_crumb @site.name
+            @title = @site.name
+          else
+            add_crumb 'New'
+            @title = 'Site'
+          end
         end
       end
-    end
+
+      def stamp
+        case self.action_name
+        when 'create'
+          @site.creator_id = self.public_send("current_#{RokBase.user_class.downcase}").id
+        when 'update'
+          @site.updater_id = self.public_send("current_#{RokBase.user_class.downcase}").id
+        end
+      end
   end
 end

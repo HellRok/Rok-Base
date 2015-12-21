@@ -13,13 +13,13 @@ module RokBase
     end
 
     def pages
-      @pages ||= @site.pages.published.map { |page|
+      @pages ||= @site.pages.published.in_order.map { |page|
         RokCms::PageDrop.new(page)
       }
     end
 
     def posts
-      @posts ||= @site.posts.published.map { |post|
+      @posts ||= @site.posts.published.in_order.map { |post|
         RokBlog::PostDrop.new(post)
       }
     end

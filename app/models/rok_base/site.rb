@@ -1,12 +1,16 @@
 module RokBase
   class Site < ActiveRecord::Base
     include SiteExtension
+
     before_save :compile_scss
     after_save :update_post_paths if RokBlog
 
     validates_presence_of :host, :name
     validates_uniqueness_of :host
     validates_length_of :host, :name, maximum: 255
+
+    belongs_to :created_by, class_name: RokBase.user_class, foreign_key: :creator_id
+    belongs_to :updated_by, class_name: RokBase.user_class, foreign_key: :updater_id
 
     if RokCms
       has_many :layouts, class_name: 'RokCms::Layout', dependent: :restrict_with_error

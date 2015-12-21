@@ -42,4 +42,7 @@ Gem::Specification.new do |s|
   # Pure-admin dependencies
   s.add_dependency 'font-awesome-rails'
   s.add_dependency 'pure-css-rails'
+
+  # User stamping
+  #s.add_dependency 'userstamp'
 end
