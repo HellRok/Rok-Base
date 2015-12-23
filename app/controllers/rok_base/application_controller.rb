@@ -2,6 +2,7 @@ module RokBase
   class ApplicationController < RokExtensionController
     layout "admin"
     add_crumb 'Admin', '/admin/'
+    before_filter :load_editor_settings
 
     def index
     end
@@ -36,6 +37,16 @@ module RokBase
           @child.updater_id = self.
             public_send("current_#{RokBase.user_class.downcase}").id
         end
+      end
+
+      def load_editor_settings
+        user = self.public_send("current_#{RokBase.user_class.downcase}")
+        @editor_settings = {}
+
+        @editor_settings[:theme] = user.respond_to?('editor_theme') ?
+          user.editor_theme : 'solarized'
+        @editor_settings[:keymap] = user.respond_to?('editor_keymap') ?
+          user.editor_keymap : 'default'
       end
   end
 end

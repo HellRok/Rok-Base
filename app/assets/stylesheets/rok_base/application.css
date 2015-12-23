@@ -12,4 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ * I know this is bad practice, it should be in /vendor buuuut that was proving hard.
+ *= require_tree ./codemirror
  */
+

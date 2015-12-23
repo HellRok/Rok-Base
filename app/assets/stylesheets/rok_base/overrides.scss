@@ -1,0 +1,14 @@
+// Stop Code Mirror elements appearing above the header
+#top-menu {
+  z-index: 7;
+}
+
+.CodeMirror {
+  border: 1px solid #CCC;
+
+  // Pure admin forces exo2 everywhere
+  * {
+    font-family: monospace !important;
+  }
+}
+

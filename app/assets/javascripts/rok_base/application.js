@@ -11,3 +11,5 @@
 // about supported directives.
 //
 //= require_tree .
+// I know this is bad practice, it should be in /vendor buuuut that was proving hard.
+//= require_tree ./codemirror
