@@ -5,12 +5,12 @@ module RokBase
     before_save :compile_scss
     after_save :update_post_paths if RokBlog
 
-    validates_presence_of :host, :name
-    validates_uniqueness_of :host
-    validates_length_of :host, :name, maximum: 255
+    validates_presence_of :name
+    validates_length_of :name, maximum: 255
 
     belongs_to :created_by, class_name: RokBase.user_class, foreign_key: :creator_id
     belongs_to :updated_by, class_name: RokBase.user_class, foreign_key: :updater_id
+    has_many :aliases, class_name: 'RokBase::SiteAlias'
 
     if RokCms
       has_many :layouts, class_name: 'RokCms::Layout', dependent: :restrict_with_error
@@ -41,6 +41,11 @@ module RokBase
     def blog_base
       # Make sure we always start with a /
       super[0] != '/' ? "/#{super}" : super
+    end
+
+    def self.find_by_host(host)
+      site_alias = RokBase::SiteAlias.find_by(host: host)
+      site_alias.try(:site)
     end
 
     private

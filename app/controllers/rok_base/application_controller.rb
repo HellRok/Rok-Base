@@ -24,7 +24,7 @@ module RokBase
         @child = instance_variable_get("@#{params[:controller].split('/').last.
           singularize}")
         @site ||= @child.site if @child.respond_to?(:site)
-        @site = RokBase::Site.find_by(host: request.host) unless @site.present?
+        @site = RokBase::Site.find_by_host(request.host) unless @site.present?
       end
 
       def stamp

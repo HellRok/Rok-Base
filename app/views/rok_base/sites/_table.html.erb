@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Site</th>
-      <th>Hostname</th>
+      <th>Hostnames</th>
       <th>Updated By</th>
       <th></th>
     </tr>
@@ -14,7 +14,7 @@
     <% sites.each do |site| %>
       <tr>
         <td><%= link_to site.name, site_path(site) %></td>
-        <td><%= site.host %></td>
+        <td><%= site.aliases.map(&:to_s).to_sentence %></td>
         <td><%= site.updated_by %></td>
         <td class="minimal">
           <%= link_to 'Edit', edit_site_path(site), class: 'pure-button button-orange' %>

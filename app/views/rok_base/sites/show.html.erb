@@ -3,10 +3,33 @@
     <strong>Name:</strong> <%= site.name %>
   </div>
   <div class="pure-u-1-1 pure-u-md-1-2">
-    <strong>Host:</strong> <%= site.host %>
-  </div>
-  <div class="pure-u-1-1 pure-u-md-1-2">
     <strong>Blog base:</strong> <%= site.blog_base %>
+  </div>
+
+  <div class="pure-u-1-1 ">
+    <%= link_to 'New Hostname', new_site_site_alias_path(site_id: site.id),
+      class: 'pure-button button-green' %>
+
+    <table class="pure-table pure-table-striped full-width">
+      <thead>
+        <tr>
+          <th>Hostname</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% site.aliases.each do |site_alias| %>
+          <tr>
+            <td><%= site_alias %></td>
+            <td class="minimal">
+              <%= link_to 'Delete', site_alias_path(site_alias),
+                method: :delete, class: 'pure-button button-red',
+                data: { confirm: 'Are you sure you want to delete this hostname?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 

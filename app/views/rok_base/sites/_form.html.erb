@@ -1,6 +1,5 @@
 <%= simple_form_for @site, html: { class: 'pure-form-aligned' } do |f| %>
   <%= f.input :name, input_html: { class: 'pure-input-1' } %>
-  <%= f.input :host, input_html: { class: 'pure-input-1' } %>
   <% if RokBlog %>
     <%= f.input :blog_base, input_html: { class: 'pure-input-1' } %>
   <% end %>
