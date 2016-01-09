@@ -77,7 +77,6 @@ var Page = {
   },
 
   update_slug: function() {
-    console.log('beep');
     $('#page_slug').val(paramaterize($('#page_title').val()));
   }
 }
