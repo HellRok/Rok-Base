@@ -51,7 +51,10 @@ var Page = {
       container.appendChild(wrapper);
     });
 
-    Page.populate_content();
+    if (!$('#new_page').length) {
+      Page.populate_content();
+    }
+
     initEditors();
   },
 
@@ -71,6 +74,11 @@ var Page = {
     });
 
     $('#page_content').val(JSON.stringify(json));
+  },
+
+  update_slug: function() {
+    console.log('beep');
+    $('#page_slug').val(paramaterize($('#page_title').val()));
   }
 }
 
@@ -80,6 +88,12 @@ $(document).ready(function() {
     Page.load_layout();
     $('#page_layout_id').on('change', Page.update_layout);
   }
+
+  if ($('#new_page').length > 0) {
+    // backwards compatibility
+    $('#page_title').on('change', Page.update_slug);
+    $('#page_title').on('keyup', Page.update_slug);
+  }
 });
 
 function clean(string) {
@@ -87,4 +101,9 @@ function clean(string) {
   string = string.replace('_', ' ');
   string = string.replace('-', ' ');
   return string;
+}
+
+function paramaterize(string) {
+  // http://stackoverflow.com/a/24849854
+  return string.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
 }
